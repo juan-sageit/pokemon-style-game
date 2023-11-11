@@ -82,7 +82,14 @@
     display: flex;
     flex-direction: column;
 }
-
+#userInterface {
+    position: fixed; /* Or absolute, depending on your layout needs */
+    bottom: 10px; /* Adjust as needed */
+    left: 10px; /* Adjust as needed */
+    z-index: 1000; /* Ensure it's above other elements */
+    display: flex;
+    justify-content: space-between;
+}
   </style>
 </head>
 
