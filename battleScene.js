@@ -13,8 +13,10 @@ let emby
 let renderedSprites
 let battleAnimationId
 let queue
+let isInBattle = false;
 
 function initBattle() {
+  isInBattle = true; // Set the state to true when battle starts
   document.querySelector('#userInterface').style.display = 'block'
   document.querySelector('#dialogueBox').style.display = 'none'
   document.querySelector('#enemyHealthBar').style.width = '100%'
@@ -48,6 +50,7 @@ function initBattle() {
         })
         queue.push(() => {
           // fade back to black
+          isInBattle = false; // Set the state to false when battle ends
           gsap.to('#overlappingDiv', {
             opacity: 1,
             onComplete: () => {
@@ -58,8 +61,6 @@ function initBattle() {
               gsap.to('#overlappingDiv', {
                 opacity: 0
               })
-
-              battle.initiated = false
               audio.Map.play()
             }
           })
