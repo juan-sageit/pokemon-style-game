@@ -68,7 +68,7 @@ charactersMap.forEach((row, i) => {
     // 1026 === villager
     if (symbol === 1026) {
       characters.push(
-        new Character({
+        new Sprite({
           position: {
             x: j * Boundary.width + offset.x,
             y: i * Boundary.height + offset.y
@@ -79,15 +79,14 @@ charactersMap.forEach((row, i) => {
             hold: 60
           },
           scale: 3,
-          animate: true,
-          dialogue: ['...', 'Hey mister, have you seen my Doggochu?']
+          animate: true
         })
       )
     }
     // 1031 === oldMan
     else if (symbol === 1031) {
       characters.push(
-        new Character({
+        new Sprite({
           position: {
             x: j * Boundary.width + offset.x,
             y: i * Boundary.height + offset.y
@@ -97,8 +96,7 @@ charactersMap.forEach((row, i) => {
             max: 4,
             hold: 60
           },
-          scale: 3,
-          dialogue: ['My bones hurt.']
+          scale: 3
         })
       )
     }
@@ -409,38 +407,7 @@ function animate() {
 
 let lastKey = ''
 window.addEventListener('keydown', (e) => {
-  if (player.isInteracting) {
-    switch (e.key) {
-      case ' ':
-        player.interactionAsset.dialogueIndex++
-
-        const { dialogueIndex, dialogue } = player.interactionAsset
-        if (dialogueIndex <= dialogue.length - 1) {
-          document.querySelector('#characterDialogueBox').innerHTML =
-            player.interactionAsset.dialogue[dialogueIndex]
-          return
-        }
-
-        // finish conversation
-        player.isInteracting = false
-        player.interactionAsset.dialogueIndex = 0
-        document.querySelector('#characterDialogueBox').style.display = 'none'
-
-        break
-    }
-    return
-  }
-
   switch (e.key) {
-    case ' ':
-      if (!player.interactionAsset) return
-
-      // beginning the conversation
-      const firstMessage = player.interactionAsset.dialogue[0]
-      document.querySelector('#characterDialogueBox').innerHTML = firstMessage
-      document.querySelector('#characterDialogueBox').style.display = 'flex'
-      player.isInteracting = true
-      break
     case 'w':
       keys.w.pressed = true
       lastKey = 'w'
@@ -461,25 +428,6 @@ window.addEventListener('keydown', (e) => {
       break
   }
 })
-document.getElementById('upButton').addEventListener('click', () => {
-  // Code to move player up
-  // Simulate 'w' key press or directly invoke the movement function
-});
-
-document.getElementById('leftButton').addEventListener('click', () => {
-  // Code to move player left
-  // Simulate 'a' key press or directly invoke the movement function
-});
-
-document.getElementById('downButton').addEventListener('click', () => {
-  // Code to move player down
-  // Simulate 's' key press or directly invoke the movement function
-});
-
-document.getElementById('rightButton').addEventListener('click', () => {
-  // Code to move player right
-  // Simulate 'd' key press or directly invoke the movement function
-});
 
 window.addEventListener('keyup', (e) => {
   switch (e.key) {
@@ -505,53 +453,3 @@ addEventListener('click', () => {
     clicked = true
   }
 })
-function handleButtonAPress() {
-  // Logic for button A press
-  console.log('Button A pressed');
-}
-
-function handleButtonARelease() {
-  // Logic for button A release
-  console.log('Button A released');
-}
-
-function handleButtonBPress() {
-  // Logic for button B press
-  console.log('Button B pressed');
-}
-
-function handleButtonBRelease() {
-  // Logic for button B release
-  console.log('Button B released');
-}
-
-function handleSelectButtonPress() {
-  // Logic for SELECT button press
-  console.log('SELECT button pressed');
-}
-
-function handleSelectButtonRelease() {
-  // Logic for SELECT button release
-  console.log('SELECT button released');
-}
-
-function handleStartButtonPress() {
-  // Logic for START button press
-  console.log('START button pressed');
-}
-
-function handleStartButtonRelease() {
-  // Logic for START button release
-  console.log('START button released');
-}
-const dpadUp = document.getElementById('up');
-dpadUp.addEventListener('touchstart', () => handleDpadDirection('up'));
-dpadUp.addEventListener('touchend', () => stopDpadDirection('up'));
-
-document.addEventListener('keydown', (event) => {
-  if (!isInBattle) {
-      // Handle exploration controls
-  } else {
-      // Handle battle controls or ignore
-  }
-});
