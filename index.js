@@ -68,7 +68,7 @@ charactersMap.forEach((row, i) => {
     // 1026 === villager
     if (symbol === 1026) {
       characters.push(
-        new Character({
+        new Sprite({
           position: {
             x: j * Boundary.width + offset.x,
             y: i * Boundary.height + offset.y
@@ -79,15 +79,14 @@ charactersMap.forEach((row, i) => {
             hold: 60
           },
           scale: 3,
-          animate: true,
-          dialogue: ['...', 'Hey mister, have you seen my Doggochu?']
+          animate: true
         })
       )
     }
     // 1031 === oldMan
     else if (symbol === 1031) {
       characters.push(
-        new Character({
+        new Sprite({
           position: {
             x: j * Boundary.width + offset.x,
             y: i * Boundary.height + offset.y
@@ -97,8 +96,7 @@ charactersMap.forEach((row, i) => {
             max: 4,
             hold: 60
           },
-          scale: 3,
-          dialogue: ['My bones hurt.']
+          scale: 3
         })
       )
     }
@@ -409,38 +407,7 @@ function animate() {
 
 let lastKey = ''
 window.addEventListener('keydown', (e) => {
-  if (player.isInteracting) {
-    switch (e.key) {
-      case ' ':
-        player.interactionAsset.dialogueIndex++
-
-        const { dialogueIndex, dialogue } = player.interactionAsset
-        if (dialogueIndex <= dialogue.length - 1) {
-          document.querySelector('#characterDialogueBox').innerHTML =
-            player.interactionAsset.dialogue[dialogueIndex]
-          return
-        }
-
-        // finish conversation
-        player.isInteracting = false
-        player.interactionAsset.dialogueIndex = 0
-        document.querySelector('#characterDialogueBox').style.display = 'none'
-
-        break
-    }
-    return
-  }
-
   switch (e.key) {
-    case ' ':
-      if (!player.interactionAsset) return
-
-      // beginning the conversation
-      const firstMessage = player.interactionAsset.dialogue[0]
-      document.querySelector('#characterDialogueBox').innerHTML = firstMessage
-      document.querySelector('#characterDialogueBox').style.display = 'flex'
-      player.isInteracting = true
-      break
     case 'w':
       keys.w.pressed = true
       lastKey = 'w'
