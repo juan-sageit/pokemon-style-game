@@ -31,7 +31,14 @@ function initBattle() {
     button.innerHTML = attack.name
     document.querySelector('#attacksBox').append(button)
   })
+  // Create a quit button
+  const quitButton = document.createElement('button');
+  quitButton.innerHTML = 'Quit Battle';
+  quitButton.id = 'quitButton'; // Add an ID for styling or referencing
+  document.querySelector('#userInterface').append(quitButton);
 
+  // Add event listener for the quit button
+  quitButton.addEventListener('click', quitBattle);
   // our event listeners for our buttons (attack)
   document.querySelectorAll('button').forEach((button) => {
     button.addEventListener('click', (e) => {
@@ -133,3 +140,20 @@ document.querySelector('#dialogueBox').addEventListener('click', (e) => {
     queue.shift()
   } else e.currentTarget.style.display = 'none'
 })
+function quitBattle() {
+  // Stop the battle animation
+  cancelAnimationFrame(battleAnimationId);
+
+  // Reset UI elements
+  document.querySelector('#userInterface').style.display = 'none';
+  gsap.to('#overlappingDiv', { opacity: 0 });
+
+  // Reset game state
+  battle.initiated = false;
+  audio.Map.play(); // Resume map music or whatever is appropriate
+
+  // Additional cleanup as needed...
+
+  // Navigate player to a safe point or menu
+  // This might involve calling a function to change the game scene
+}

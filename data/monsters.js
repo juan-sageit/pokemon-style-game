@@ -12,7 +12,7 @@ const monsters = {
       hold: 30
     },
     animate: true,
-    name: 'Emby',
+    name: 'Spitefire',
     attacks: [attacks.Tackle, attacks.Fireball]
   },
   Draggle: {
