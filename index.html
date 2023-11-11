@@ -30,7 +30,7 @@
 
     #gameControls {
     display: flex; /* Or 'block', depending on your layout */      
-    position: fixed;
+    position: absolute;
     bottom: 10px;
     left: 10px;
     z-index: 1000; /* Ensure it's above game content */
@@ -46,7 +46,7 @@
 /* Additional styling for positioning and appearance */
 
     #gamepad {
-    position: fixed;
+    position: absolute;
     bottom: 300px; /* Increased from 10px to 90px */
     left: 20px;
     right: 20px;
@@ -100,7 +100,7 @@
     flex-direction: column;
 }
 #userInterface {
-    position: fixed; /* Or absolute, depending on your layout needs */
+    position: absolute;
     bottom: 10px; /* Adjust as needed */
     left: 10px; /* Adjust as needed */
     z-index: 1000; /* Ensure it's above other elements */
