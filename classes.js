@@ -1,3 +1,20 @@
+function updateHealthBar(monsterName, newHealth) {
+  let healthBarElement;
+  if (monsterName === 'Emby') {
+      healthBarElement = document.getElementById('playerHealthBar');
+  } else {
+      healthBarElement = document.getElementById(`healthBar-${monsterName}`);
+  }
+  
+  if (healthBarElement) {
+      const healthPercentage = Math.max(0, Math.min(newHealth, 100)); // Clamps between 0 and 100
+      healthBarElement.style.width = `${healthPercentage}%`;
+      // ... other logic
+  } else {
+      console.warn(`Health bar element not found for ${monsterName}`);
+  }
+}
+
 class Sprite {
   constructor({
     position,
@@ -161,7 +178,6 @@ class Monster extends Sprite {
           x: recipient.position.x,
           y: recipient.position.y,
           onComplete: () => {
-            // Enemy actually gets hit
             audio.fireballHit.play()
             gsap.to(healthBar, {
               width: recipient.health + '%'
@@ -198,7 +214,6 @@ class Monster extends Sprite {
             x: this.position.x + movementDistance * 2,
             duration: 0.1,
             onComplete: () => {
-              // Enemy actually gets hit
               audio.tackleHit.play()
               gsap.to(healthBar, {
                 width: recipient.health + '%'
@@ -223,10 +238,133 @@ class Monster extends Sprite {
             x: this.position.x
           })
         break
+        case 'Slash':
+      audio.initSlash.play(); 
+          const slashImage = new Image();
+          slashImage.src = './img/slash.png';
+          const slash = new Sprite({
+            position: {
+              x: this.position.x,
+              y: this.position.y
+            },
+            image: slashImage,
+            frames: { max: 5, hold: 5 },
+            animate: true,
+            rotation: this.isEnemy ? -0.5 : 0.5
+          });
+          renderedSprites.splice(1, 0, slash);
+    
+          gsap.to(slash.position, {
+            x: recipient.position.x,
+            y: recipient.position.y,
+            onComplete: () => {
+              audio.slashHit.play(); 
+              recipient.health -= attack.damage; // Deduct health
+              console.log(`Updating health bar for ${recipient.name} to ${recipient.health}`);
+              updateHealthBar(recipient.name, recipient.health);
+              renderedSprites.splice(renderedSprites.indexOf(slash), 1);
+          }
+          });
+          break;
+    
+        case 'Crush':
+          audio.initCrush.play();
+          const crushImage = new Image();
+          crushImage.src = './img/crush.png'; 
+          const crush = new Sprite({
+            position: {
+              x: recipient.position.x,
+              y: recipient.position.y - 100 
+            },
+            image: crushImage,
+            frames: { max: 3, hold: 10 }, 
+            animate: true
+          });
+          renderedSprites.splice(1, 0, crush);
+    
+          gsap.to(crush.position, {
+            y: recipient.position.y,
+            onComplete: () => {
+              console.log(`Before attack, ${recipient.name}'s health: ${recipient.health}`);
+              audio.crushHit.play();
+              recipient.health -= attack.damage; // Deduct health
+              console.log(`Updating health bar for ${recipient.name} to ${recipient.health}`);
+              updateHealthBar(recipient.name, recipient.health);
+              renderedSprites.splice(renderedSprites.indexOf(crush), 1);
+            }
+          });
+          break;
+          case 'Glare':
+
+  audio.initGlare.play(); 
+
+  const glareImage = new Image();
+  glareImage.src = './img/glare.png'; 
+  const glare = new Sprite({
+    position: {
+      x: this.position.x,
+      y: this.position.y
+    },
+    image: glareImage,
+    frames: {
+      max: 4, 
+      hold: 10
+    },
+    animate: true,
+    rotation
+  });
+
+  renderedSprites.splice(1, 0, glare);
+
+  gsap.to(glare.position, {
+    x: recipient.position.x,
+    y: recipient.position.y,
+    onComplete: () => {
+      console.log(`Before attack, ${recipient.name}'s health: ${recipient.health}`);
+      audio.glareHit.play();
+      recipient.health -= attack.damage; // Deduct health
+      console.log(`Updating health bar for ${recipient.name} to ${recipient.health}`);
+      updateHealthBar(recipient.name, recipient.health);
+      renderedSprites.splice(renderedSprites.indexOf(glare), 1);
+    }
+  });
+  break;
+  case 'Earthquake':
+  audio.initEarthquake.play();
+  const earthquakeImage = new Image();
+  earthquakeImage.src = './img/earthquake.png';
+  const earthquake = new Sprite({
+    position: {
+      x: this.position.x,
+      y: this.position.y
+    },
+    image: earthquakeImage,
+    frames: {
+      max: 4,
+      hold: 10
+    },
+    animate: true,
+    rotation
+  });
+  renderedSprites.splice(1, 0, earthquake);
+  gsap.to(earthquake.position, {
+    x: recipient.position.x,
+    y: recipient.position.y,
+    onComplete: () => {
+      console.log(`Before attack, ${recipient.name}'s health: ${recipient.health}`);
+      audio.earthquakeHit.play();
+      recipient.health -= attack.damage; // Deduct health
+      console.log(`Updating health bar for ${recipient.name} to ${recipient.health}`);
+      updateHealthBar(recipient.name, recipient.health);
+      renderedSprites.splice(renderedSprites.indexOf(earthquake), 1);
+    }
+  });
+  break;
+      default:
+        break
     }
   }
 }
-
 class Boundary {
   static width = 48
   static height = 48

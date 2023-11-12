@@ -33,5 +33,46 @@ const audio = {
     src: './audio/victory.wav',
     html5: true,
     volume: 0.1
-  })
+  }),
+  initSlash: new Howl({
+    src: './audio/initSlash.wav',
+    html5: true,
+    volume: 0.1
+  }),
+  initGlare: new Howl({
+    src: './audio/initGlare.wav',
+    html5: true,
+    volume: 0.1
+  }),
+  initCrush: new Howl({
+    src: './audio/initCrush.wav',
+    html5: true,
+    volume: 0.1
+  }),
+  slashHit: new Howl({
+    src: './audio/initSlash.wav',
+    html5: true,
+    volume: 0.1
+  }),
+  crushHit: new Howl({
+    src: './audio/crushHit.wav',
+    html5: true,
+    volume: 0.1
+  }),
+  glareHit: new Howl({
+    src: './audio/initGlare.wav',
+    html5: true,
+    volume: 0.1
+  }),
+  initEarthquake: new Howl({
+    src: './audio/initEarthquake.wav',
+    html5: true,
+    volume: 0.1
+  }),
+  earthquakeHit: new Howl({
+    src: './audio/earthquakeHit.wav',
+    html5: true,
+    volume: 0.1
+  }),
+  // ... Add more audio here ...
 }

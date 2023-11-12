@@ -234,8 +234,8 @@ function animate() {
           rectangle1: player,
           rectangle2: battleZone
         }) &&
-        overlappingArea > (player.width * player.height) / 2 &&
-        Math.random() < 0.01
+        overlappingArea > (player.width * player.height) / 2 && // 50% of the player's area
+        Math.random() < 0.05  // 5% chance of battle
       ) {
         // deactivate current animation loop
         window.cancelAnimationFrame(animationId)
@@ -478,7 +478,17 @@ window.addEventListener('keyup', (e) => {
       break
   }
 })
-
+// In a main or global script file
+let gameData = {
+  monsters: {
+      'Emby': { health: 100 },
+      'Enemy1': { health: 100 },
+      // Other monsters...
+  }
+};
+function applyDamage(monsterName, damage) {
+  gameData.monsters[monsterName].health -= damage;
+}
 let clicked = false
 addEventListener('click', () => {
   if (!clicked) {
