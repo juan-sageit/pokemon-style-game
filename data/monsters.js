@@ -35,7 +35,7 @@ const monsters = {
   Glimmer: {
     position: {
       x: 600,
-      y: -500
+      y: 0
     },
     image: {
       src: './img/glimmerSprite.png' // Assuming you have a separate sprite for Glimmer
