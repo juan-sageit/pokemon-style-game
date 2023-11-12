@@ -8,7 +8,7 @@ const battleBackground = new Sprite({
   image: battleBackgroundImage
 })
 
-let emby
+let Player
 let renderedSprites
 let battleAnimationId
 let queue
@@ -23,19 +23,19 @@ function initBattle() {
 
   // Randomly select an enemy monster
   
-  const enemyMonsterNames = Object.keys(monsters).filter(name => name !== 'Emby'); // Exclude player's monster
+  const enemyMonsterNames = Object.keys(monsters).filter(name => name !== 'Player'); // Exclude player's monster
   const randomEnemyName = enemyMonsterNames[Math.floor(Math.random() * enemyMonsterNames.length)];
   let currentEnemy = new Monster(monsters[randomEnemyName]); // Random enemy
   const enemyNameElement = document.querySelector('#enemyName');
   enemyNameElement.textContent = currentEnemy.name;
    // Assuming currentEnemy has a name property
-  // Assuming 'Emby' is always the player's monster for now
-  emby = new Monster(monsters.Emby); // Player's monster
+  // Assuming 'Player' is always the player's monster for now
+  Player = new Monster(monsters.Player); // Player's monster
 
-  renderedSprites = [currentEnemy, emby];
+  renderedSprites = [currentEnemy, Player];
   queue = [];
 
-  emby.attacks.forEach((attack) => {
+  Player.attacks.forEach((attack) => {
     const button = document.createElement('button');
     button.innerHTML = attack.name;
     document.querySelector('#attacksBox').append(button);
@@ -45,7 +45,7 @@ function initBattle() {
   document.querySelectorAll('button').forEach((button) => {
     button.addEventListener('click', (e) => {
       const selectedAttack = attacks[e.currentTarget.innerHTML];
-      emby.attack({
+      Player.attack({
         attack: selectedAttack,
         recipient: currentEnemy,
         renderedSprites
@@ -81,14 +81,14 @@ function initBattle() {
     queue.push(() => {
       currentEnemy.attack({
         attack: randomAttack,
-        recipient: emby,
+        recipient: Player,
         renderedSprites
       });
 
       // Check if the player's monster has fainted
-      if (emby.health <= 0) {
+      if (Player.health <= 0) {
         queue.push(() => {
-          emby.faint();
+          Player.faint();
         });
 
           queue.push(() => {

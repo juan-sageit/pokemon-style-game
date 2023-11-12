@@ -1,6 +1,6 @@
 function updateHealthBar(monsterName, newHealth) {
   let healthBarElement;
-  if (monsterName === 'Emby') {
+  if (monsterName === 'Player') {
       healthBarElement = document.getElementById('playerHealthBar');
   } else {
       healthBarElement = document.getElementById(`healthBar-${monsterName}`);

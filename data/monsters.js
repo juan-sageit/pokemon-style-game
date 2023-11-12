@@ -1,5 +1,5 @@
 const monsters = {
-  Emby: {
+  Player: {
     position: {
       x: 200,
       y: 88
@@ -17,8 +17,8 @@ const monsters = {
   },
   Draggle: {
     position: {
-      x: 600,
-      y: 0
+      x: 700,
+      y: -20
     },
     image: {
       src: './img/draggleSprite.png'
@@ -34,8 +34,8 @@ const monsters = {
   },
   Glimmer: {
     position: {
-      x: 600,
-      y: 0
+      x: 700,
+      y: -20
     },
     image: {
       src: './img/glimmerSprite.png' // Assuming you have a separate sprite for Glimmer
@@ -52,8 +52,8 @@ const monsters = {
   // Example for Boulder:
   Boulder: {
     position: {
-      x: 600,
-      y: 0
+      x: 700,
+      y: -30
     },
     image: {
       src: './img/boulderSprite.png' // Assuming you have a separate sprite for Boulder
