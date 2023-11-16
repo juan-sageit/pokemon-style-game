@@ -167,7 +167,10 @@ const foreground = new Sprite({
   },
   image: foregroundImage
 })
-// Up (W)
+// Setting up event listeners for 'W' key (Up)
+document.getElementById('up').addEventListener('click', () => {
+  keys.w.pressed = true;
+});
 document.getElementById('up').addEventListener('touchstart', () => {
   keys.w.pressed = true;
 });
@@ -175,7 +178,10 @@ document.getElementById('up').addEventListener('touchend', () => {
   keys.w.pressed = false;
 });
 
-// Left (A)
+// Setting up event listeners for 'A' key (Left)
+document.getElementById('left').addEventListener('click', () => {
+  keys.a.pressed = true;
+});
 document.getElementById('left').addEventListener('touchstart', () => {
   keys.a.pressed = true;
 });
@@ -183,7 +189,10 @@ document.getElementById('left').addEventListener('touchend', () => {
   keys.a.pressed = false;
 });
 
-// Down (S)
+// Setting up event listeners for 'S' key (Down)
+document.getElementById('down').addEventListener('click', () => {
+  keys.s.pressed = true;
+});
 document.getElementById('down').addEventListener('touchstart', () => {
   keys.s.pressed = true;
 });
@@ -191,7 +200,10 @@ document.getElementById('down').addEventListener('touchend', () => {
   keys.s.pressed = false;
 });
 
-// Right (D)
+// Setting up event listeners for 'D' key (Right)
+document.getElementById('right').addEventListener('click', () => {
+  keys.d.pressed = true;
+});
 document.getElementById('right').addEventListener('touchstart', () => {
   keys.d.pressed = true;
 });
@@ -199,14 +211,17 @@ document.getElementById('right').addEventListener('touchend', () => {
   keys.d.pressed = false;
 });
 
-// Action (Space)
+// Setting up event listeners for 'Space' key (Action)
+document.getElementById('action').addEventListener('click', () => {
+  keys.space.pressed = true;
+});
 document.getElementById('action').addEventListener('touchstart', () => {
-  // Assuming you have a similar structure for the space key in your keys object
   keys.space.pressed = true;
 });
 document.getElementById('action').addEventListener('touchend', () => {
   keys.space.pressed = false;
 });
+
 const keys = {
   w: {
     pressed: false
@@ -218,6 +233,9 @@ const keys = {
     pressed: false
   },
   d: {
+    pressed: false
+  },
+  space: {  // Add this line
     pressed: false
   }
 }
