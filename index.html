@@ -28,6 +28,10 @@
     button:hover {
       background-color: #ddd;
     }
+    button.pressed {
+    /* Your styles for pressed state */
+    background-color: #ccc;
+}
   </style>
 </head>
 
@@ -46,7 +50,13 @@
       z-index: 10;
     "
   ></div>
-
+  <div id="gamepad">
+    <button id="up">W</button>
+    <button id="left">A</button>
+    <button id="down">S</button>
+    <button id="right">D</button>
+    <button id="action">Space</button>
+  </div>
   <canvas></canvas>
   <div
     id="characterDialogueBox"

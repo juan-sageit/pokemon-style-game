@@ -167,7 +167,46 @@ const foreground = new Sprite({
   },
   image: foregroundImage
 })
+// Up (W)
+document.getElementById('up').addEventListener('touchstart', () => {
+  keys.w.pressed = true;
+});
+document.getElementById('up').addEventListener('touchend', () => {
+  keys.w.pressed = false;
+});
 
+// Left (A)
+document.getElementById('left').addEventListener('touchstart', () => {
+  keys.a.pressed = true;
+});
+document.getElementById('left').addEventListener('touchend', () => {
+  keys.a.pressed = false;
+});
+
+// Down (S)
+document.getElementById('down').addEventListener('touchstart', () => {
+  keys.s.pressed = true;
+});
+document.getElementById('down').addEventListener('touchend', () => {
+  keys.s.pressed = false;
+});
+
+// Right (D)
+document.getElementById('right').addEventListener('touchstart', () => {
+  keys.d.pressed = true;
+});
+document.getElementById('right').addEventListener('touchend', () => {
+  keys.d.pressed = false;
+});
+
+// Action (Space)
+document.getElementById('action').addEventListener('touchstart', () => {
+  // Assuming you have a similar structure for the space key in your keys object
+  keys.space.pressed = true;
+});
+document.getElementById('action').addEventListener('touchend', () => {
+  keys.space.pressed = false;
+});
 const keys = {
   w: {
     pressed: false
@@ -182,6 +221,55 @@ const keys = {
     pressed: false
   }
 }
+window.addEventListener('keydown', (e) => {
+  switch (e.key) {
+      case 'w':
+          keys.w.pressed = true;
+          document.getElementById('up').classList.add('pressed');
+          break;
+      case 'a':
+          keys.a.pressed = true;
+          document.getElementById('left').classList.add('pressed');
+          break;
+      case 's':
+          keys.s.pressed = true;
+          document.getElementById('down').classList.add('pressed');
+          break;
+      case 'd':
+          keys.d.pressed = true;
+          document.getElementById('right').classList.add('pressed');
+          break;
+      case ' ':
+          keys.space.pressed = true;
+          document.getElementById('action').classList.add('pressed');
+          break;
+  }
+});
+
+window.addEventListener('keyup', (e) => {
+  switch (e.key) {
+      case 'w':
+          keys.w.pressed = false;
+          document.getElementById('up').classList.remove('pressed');
+          break;
+      case 'a':
+          keys.a.pressed = false;
+          document.getElementById('left').classList.remove('pressed');
+          break;
+      case 's':
+          keys.s.pressed = false;
+          document.getElementById('down').classList.remove('pressed');
+          break;
+      case 'd':
+          keys.d.pressed = false;
+          document.getElementById('right').classList.remove('pressed');
+          break;
+      case ' ':
+          keys.space.pressed = false;
+          document.getElementById('action').classList.remove('pressed');
+          break;
+  }
+});
 
 const movables = [
   background,
