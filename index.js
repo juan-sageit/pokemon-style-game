@@ -170,57 +170,57 @@ const foreground = new Sprite({
 // Setting up event listeners for 'W' key (Up)
 document.getElementById('up').addEventListener('click', () => {
   keys.w.pressed = true;
-});
+}, { passive: true });
 document.getElementById('up').addEventListener('touchstart', () => {
   keys.w.pressed = true;
-});
+}, { passive: true });
 document.getElementById('up').addEventListener('touchend', () => {
   keys.w.pressed = false;
-});
+}, { passive: true });
 
 // Setting up event listeners for 'A' key (Left)
 document.getElementById('left').addEventListener('click', () => {
   keys.a.pressed = true;
-});
+}, { passive: true });
 document.getElementById('left').addEventListener('touchstart', () => {
   keys.a.pressed = true;
-});
+}, { passive: true });
 document.getElementById('left').addEventListener('touchend', () => {
   keys.a.pressed = false;
-});
+}, { passive: true });
 
 // Setting up event listeners for 'S' key (Down)
 document.getElementById('down').addEventListener('click', () => {
   keys.s.pressed = true;
-});
+}, { passive: true });
 document.getElementById('down').addEventListener('touchstart', () => {
   keys.s.pressed = true;
-});
+}, { passive: true });
 document.getElementById('down').addEventListener('touchend', () => {
   keys.s.pressed = false;
-});
+}, { passive: true });
 
 // Setting up event listeners for 'D' key (Right)
 document.getElementById('right').addEventListener('click', () => {
   keys.d.pressed = true;
-});
+}, { passive: true });
 document.getElementById('right').addEventListener('touchstart', () => {
   keys.d.pressed = true;
-});
+}, { passive: true });
 document.getElementById('right').addEventListener('touchend', () => {
   keys.d.pressed = false;
-});
+}, { passive: true });
 
 // Setting up event listeners for 'Space' key (Action)
 document.getElementById('action').addEventListener('click', () => {
   keys.space.pressed = true;
-});
+}, { passive: true });
 document.getElementById('action').addEventListener('touchstart', () => {
   keys.space.pressed = true;
-});
+}, { passive: true });
 document.getElementById('action').addEventListener('touchend', () => {
   keys.space.pressed = false;
-});
+}, { passive: true });
 
 const keys = {
   w: {
